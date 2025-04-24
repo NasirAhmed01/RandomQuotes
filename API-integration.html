@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quotes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=EB+Garamond&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "EB Garamond", serif;
+        background: url("https://images.wallpaperscraft.com/image/single/vintage_paper_cameo_76277_1366x768.jpg")
+          no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #3b2f2f;
+      }
+
+      .container {
+        background-color: rgba(255, 248, 240, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        max-width: 700px;
+        text-align: center;
+        border: 3px solid #a47149;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #4a2c2a;
+      }
+
+      .quote {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 10px 25px;
+        font-size: 1rem;
+        font-family: "EB Garamond", serif;
+        border: 2px solid #a47149;
+        background-color: #fffaf0;
+        color: #4b3b30;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #f0e6d2;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0px;
+        padding-bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #5c4a3d;
+        background-color: #ffffffb9;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quotes</h1>
+      <div class="quote" id="quoteText">Loading...</div>
+      <button onclick="getquotes()">New Quote</button>
+    </div>
+
+    <div class="footer">✨ Created by Nasir Ahmed for Assignment ✨</div>
+
+    <script>
+      async function getquotes() {
+        const quoteBox = document.getElementById("quoteText");
+        try {
+          const response = await fetch(
+            "https://api.api-ninjas.com/v1/quotes?X-Api-Key=zy3SgAky7dKm//VZ0SzUoA==0uKqjmMk2kKegncn"
+          );
+          const data = await response.json();
+          quoteBox.innerText = `" ${data[0].quote} "`;
+        } catch (error) {
+          quoteBox.innerText = " Try again.";
+        }
+      }
+
+      getquotes();
+    </script>
+  </body>
+</html>
